@@ -8,7 +8,7 @@ data "azurerm_resource_group" "this" {
 }
 
 data "azurerm_service_plan" "this" {
-  name                = var.app_service_plan.name
+  name                = "${var.app_service_plan.name}-${local.resource_name_suffix}"
   resource_group_name = data.azurerm_resource_group.this[var.app_service_plan.resource_groups_map_key].name
 }
 
@@ -16,7 +16,7 @@ data "azurerm_subnet" "this" {
   for_each             = var.subnets
   name                 = each.value.subnet_name
   virtual_network_name = "${each.value.vnet_name}-${local.resource_name_suffix}"
-  resource_group_name  = data.azurerm_resource_group.this[var.app_service_plan.resource_groups_map_key].name
+  resource_group_name  = data.azurerm_resource_group.this[var.subnets.resource_groups_map_key].name
 }
 
 data "azurerm_private_dns_zone" "this" {
