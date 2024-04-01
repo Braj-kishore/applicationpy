@@ -60,6 +60,7 @@ variable "postgresql_flexible_server" {
     storage_tier             = optional(string, "P30")
     storage_mb               = optional(number, 32768)
     sku_name                 = optional(string, "GP_Standard_D4s_v3")
+    zone                     = optional(number)
     databases = optional(list(object({
       name      = string
       charset   = optional(string, "utf8")
