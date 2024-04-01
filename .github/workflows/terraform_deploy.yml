@@ -155,7 +155,7 @@ jobs:
       uses: actions/upload-artifact@v4
       with:
         name: ${{ matrix.environment }}-plan
-        path: ${{ matrix.environment }}tfplan
+        path: ./terraform/${{ matrix.environment }}tfplan
 
   Apply:
     if: github.ref == 'refs/heads/main'  &&  github.actor != 'dependabot[bot]'
