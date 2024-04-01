@@ -18,7 +18,7 @@ resource "azurerm_postgresql_flexible_server" "this" {
   private_dns_zone_id    = data.azurerm_private_dns_zone.this[var.postgresql_flexible_server.private_dns_zone_map_key].id
   administrator_login    = "psqladmin"
   administrator_password = random_password.rpassword.result
-  zone                   = "1"
+  zone                   = var.postgresql_flexible_server.zone
 
   storage_mb   = var.postgresql_flexible_server.storage_mb
   storage_tier = var.postgresql_flexible_server.storage_tier
