@@ -9,6 +9,7 @@ app_service_plan = {
   webapps = {
     app = {
       name = "Pyapp"
+      virtual_network_subnet_key= "appsubnet"
     }
   }
 }

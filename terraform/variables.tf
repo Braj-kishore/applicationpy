@@ -53,6 +53,7 @@ variable "app_service_plan" {
       kind         = optional(string, "webapp")
       os_type      = optional(string, "Linux")
       app_settings = optional(map(string))
+      virtual_network_subnet_key = optional(string)
     })), {})
   })
 }

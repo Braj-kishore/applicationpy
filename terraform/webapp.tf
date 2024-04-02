@@ -38,7 +38,9 @@ resource "azurerm_linux_web_app" "this" {
     psqladminuser     = "psqladmin"
     psqladminpassword = "${random_password.rpassword.result}"
     psqlhosturl       = azurerm_postgresql_flexible_server.this.fqdn
+    SCM_DO_BUILD_DURING_DEPLOYMENT = true
   })
+  virtual_network_subnet_id = try(data.azurerm_subnet.this[each.value.virtual_network_subnet_key].id,null)
   site_config {
     application_stack {
       python_version = "3.11"
