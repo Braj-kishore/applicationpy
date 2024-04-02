@@ -16,15 +16,14 @@
 
 ## Modules
 
-| Name | Source | Version |
-|------|--------|---------|
-| <a name="module_avm-web-site"></a> [avm-web-site](#module\_avm-web-site) | Azure/avm-res-web-site/azurerm | 0.2.0 |
+No modules.
 
 ## Resources
 
 | Name | Type |
 |------|------|
 | [azurerm_key_vault_secret.example](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/key_vault_secret) | resource |
+| [azurerm_linux_web_app.this](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/linux_web_app) | resource |
 | [azurerm_postgresql_flexible_server.this](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/postgresql_flexible_server) | resource |
 | [azurerm_postgresql_flexible_server_database.example](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/postgresql_flexible_server_database) | resource |
 | [random_password.rpassword](https://registry.terraform.io/providers/hashicorp/random/latest/docs/resources/password) | resource |
@@ -40,7 +39,7 @@
 
 | Name | Description | Type | Default | Required |
 |------|-------------|------|---------|:--------:|
-| <a name="input_app_service_plan"></a> [app\_service\_plan](#input\_app\_service\_plan) | n/a | <pre>object({<br>    name                    = string<br>    resource_groups_map_key = optional(string, "default")<br>    webapps = optional(map(object({<br>      name         = string<br>      kind         = optional(string, "webapp")<br>      os_type      = optional(string, "Linux")<br>      app_settings = optional(map(string))<br>    })),{})<br>  })</pre> | n/a | yes |
+| <a name="input_app_service_plan"></a> [app\_service\_plan](#input\_app\_service\_plan) | n/a | <pre>object({<br>    name                    = string<br>    resource_groups_map_key = optional(string, "default")<br>    webapps = optional(map(object({<br>      name         = string<br>      kind         = optional(string, "webapp")<br>      os_type      = optional(string, "Linux")<br>      app_settings = optional(map(string))<br>    })), {})<br>  })</pre> | n/a | yes |
 | <a name="input_environment"></a> [environment](#input\_environment) | Name of the environment such as dev,UAT or prod | `string` | `"dev"` | no |
 | <a name="input_keyvault"></a> [keyvault](#input\_keyvault) | n/a | <pre>object({<br>    name                    = optional(string)<br>    resource_groups_map_key = optional(string, "default")<br>  })</pre> | `{}` | no |
 | <a name="input_location"></a> [location](#input\_location) | The location/region where the resource group/resources is created. Changing this forces a new resource to be created. | `string` | n/a | yes |
