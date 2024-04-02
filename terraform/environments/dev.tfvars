@@ -1,4 +1,4 @@
-location = "WestEurope"
+location = "southeastasia"
 
 keyvault = {
   name = "kv-dev-weu-001"
@@ -17,6 +17,9 @@ subnets = {
     vnet_name   = "vnet"
     subnet_name = "app-subnet-weu-001"
   }
+}
+log_analytics_workspace = {
+  name = "law-dev-weu-001"
 }
 
 postgresql_flexible_server = {

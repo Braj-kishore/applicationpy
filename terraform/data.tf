@@ -30,3 +30,7 @@ data "azurerm_key_vault" "this" {
   resource_group_name = data.azurerm_resource_group.this[var.keyvault.resource_groups_map_key].name
 }
 
+data "azurerm_log_analytics_workspace" "this" {
+  name                = var.log_analytics_workspace.name
+  resource_group_name = data.azurerm_resource_group.this[var.log_analytics_workspace.resource_groups_map_key].name
+}
