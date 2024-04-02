@@ -40,7 +40,7 @@
 
 | Name | Description | Type | Default | Required |
 |------|-------------|------|---------|:--------:|
-| <a name="input_app_service_plan"></a> [app\_service\_plan](#input\_app\_service\_plan) | n/a | <pre>object({<br>    name                    = string<br>    resource_groups_map_key = optional(string, "default")<br>    webapps = map(object({<br>      name         = string<br>      kind         = optional(string, "webapp")<br>      os_type      = optional(string, "Linux")<br>      app_settings = optional(map(string))<br>    }))<br>  })</pre> | n/a | yes |
+| <a name="input_app_service_plan"></a> [app\_service\_plan](#input\_app\_service\_plan) | n/a | <pre>object({<br>    name                    = string<br>    resource_groups_map_key = optional(string, "default")<br>    webapps = optional(map(object({<br>      name         = string<br>      kind         = optional(string, "webapp")<br>      os_type      = optional(string, "Linux")<br>      app_settings = optional(map(string))<br>    })),{})<br>  })</pre> | n/a | yes |
 | <a name="input_environment"></a> [environment](#input\_environment) | Name of the environment such as dev,UAT or prod | `string` | `"dev"` | no |
 | <a name="input_keyvault"></a> [keyvault](#input\_keyvault) | n/a | <pre>object({<br>    name                    = optional(string)<br>    resource_groups_map_key = optional(string, "default")<br>  })</pre> | `{}` | no |
 | <a name="input_location"></a> [location](#input\_location) | The location/region where the resource group/resources is created. Changing this forces a new resource to be created. | `string` | n/a | yes |
