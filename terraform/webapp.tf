@@ -34,7 +34,11 @@ resource "azurerm_linux_web_app" "this" {
   resource_group_name = data.azurerm_resource_group.this[var.app_service_plan.resource_groups_map_key].name
   location            = data.azurerm_resource_group.this[var.app_service_plan.resource_groups_map_key].location
   service_plan_id     = data.azurerm_service_plan.this.id
-  app_settings        = each.value.app_settings
+  app_settings = merge(each.value.app_settings, {
+    psqladminuser     = "psqladmin"
+    psqladminpassword = "${random_password.rpassword.result}"
+    psqlhosturl       = azurerm_postgresql_flexible_server.this.fqdn
+  })
   site_config {
     application_stack {
       python_version = "3.11"
