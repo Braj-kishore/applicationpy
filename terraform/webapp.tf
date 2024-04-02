@@ -9,7 +9,7 @@ module "avm-web-site" {
   version                  = "0.2.0"
   for_each                 = var.app_service_plan.webapps
   kind                     = each.value.webapps.kind
-  name                     = each.value.webapps.name
+  name                     = "${each.value.webapps.name}-${local.resource_name_suffix}"
   os_type                  = each.value.webapps.os_type
   resource_group_name      = data.azurerm_resource_group.this[each.value.resource_groups_map_key].name
   app_settings             = each.value.webapps.app_settings

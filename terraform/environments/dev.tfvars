@@ -1,11 +1,16 @@
 location = "southeastasia"
 
 keyvault = {
-  name = "kv-dev-weu-001"
+  name = "kv-dev-weu-002"
 }
 
 app_service_plan = {
   name = "asp"
+  webapps = {
+    app = {
+      name= "Pyapp"
+    }
+  }
 }
 
 subnets = {

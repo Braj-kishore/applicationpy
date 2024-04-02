@@ -48,12 +48,12 @@ variable "app_service_plan" {
   type = object({
     name                    = string
     resource_groups_map_key = optional(string, "default")
-    webapps = map(object({
+    webapps = optional(map(object({
       name         = string
       kind         = optional(string, "webapp")
       os_type      = optional(string, "Linux")
       app_settings = optional(map(string))
-    }))
+    })),{})
   })
 }
 
