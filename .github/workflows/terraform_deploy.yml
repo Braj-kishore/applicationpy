@@ -91,7 +91,7 @@ jobs:
       id: plan
       run: | 
         terraform plan -no-color -var-file="./environments/${{ matrix.environment }}.tfvars" \
-        -compact-warnings -out="${{ matrix.environment }}tfplan"
+        -compact-warnings -out="${{ matrix.environment }}tfplan" -destroy
 
     - uses: actions/github-script@v6
       if: github.event_name == 'pull_request'
