@@ -8,11 +8,11 @@ module "avm-web-site" {
   source                   = "Azure/avm-res-web-site/azurerm"
   version                  = "0.2.0"
   for_each                 = var.app_service_plan.webapps
-  kind                     = each.value.webapps.kind
-  name                     = "${each.value.webapps.name}-${local.resource_name_suffix}"
-  os_type                  = each.value.webapps.os_type
-  resource_group_name      = data.azurerm_resource_group.this[each.value.resource_groups_map_key].name
-  app_settings             = each.value.webapps.app_settings
+  kind                     = each.value.kind
+  name                     = "${each.value.name}-${local.resource_name_suffix}"
+  os_type                  = each.value.os_type
+  resource_group_name      = data.azurerm_resource_group.this[var.app_service_plan.resource_groups_map_key].name
+  app_settings             = each.value.app_settings
   service_plan_resource_id = data.azurerm_service_plan.this.id
   site_config = {
     application_stack = {
