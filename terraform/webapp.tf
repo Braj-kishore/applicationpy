@@ -9,6 +9,7 @@ module "avm-web-site" {
   version                  = "0.2.0"
   for_each                 = var.app_service_plan.webapps
   kind                     = each.value.kind
+  location                 = data.azurerm_resource_group.this[var.app_service_plan.resource_groups_map_key].location
   name                     = "${each.value.name}-${local.resource_name_suffix}"
   os_type                  = each.value.os_type
   resource_group_name      = data.azurerm_resource_group.this[var.app_service_plan.resource_groups_map_key].name
@@ -25,4 +26,19 @@ module "avm-web-site" {
       workspace_resource_id = data.azurerm_log_analytics_workspace.this.id
     }
   }
+}
+
+resource "azurerm_linux_web_app" "this" {
+  for_each            = var.app_service_plan.webapps
+  name                = "${each.value.name}-${local.resource_name_suffix}"
+  resource_group_name = data.azurerm_resource_group.this[var.app_service_plan.resource_groups_map_key].name
+  location            = data.azurerm_resource_group.this[var.app_service_plan.resource_groups_map_key].location
+  service_plan_id     = data.azurerm_service_plan.this.id
+  app_settings        = each.value.app_settings
+  site_config {
+    application_stack {
+      python_version = "3.11"
+    }
+  }
+  tags = local.tags
 }

@@ -24,6 +24,7 @@ resource "azurerm_postgresql_flexible_server" "this" {
   storage_tier = var.postgresql_flexible_server.storage_tier
 
   sku_name = var.postgresql_flexible_server.sku_name
+  tags     = local.tags
 
 }
 
