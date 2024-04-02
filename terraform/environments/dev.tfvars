@@ -1,11 +1,16 @@
-location = "WestEurope"
+location = "southeastasia"
 
 keyvault = {
-  name = "kv-dev-weu-001"
+  name = "kv-dev-weu-002"
 }
 
 app_service_plan = {
   name = "asp"
+  webapps = {
+    app = {
+      name = "Pyapp"
+    }
+  }
 }
 
 subnets = {
@@ -17,6 +22,9 @@ subnets = {
     vnet_name   = "vnet"
     subnet_name = "app-subnet-weu-001"
   }
+}
+log_analytics_workspace = {
+  name = "law-dev-weu-001"
 }
 
 postgresql_flexible_server = {

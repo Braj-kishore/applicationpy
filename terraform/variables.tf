@@ -36,10 +36,24 @@ variable "resource_groups" {
   }
 }
 
+variable "log_analytics_workspace" {
+  type = object({
+    name                    = string
+    resource_groups_map_key = optional(string, "default")
+  })
+  description = "name of the log analytics workspce."
+}
+
 variable "app_service_plan" {
   type = object({
     name                    = string
     resource_groups_map_key = optional(string, "default")
+    webapps = optional(map(object({
+      name         = string
+      kind         = optional(string, "webapp")
+      os_type      = optional(string, "Linux")
+      app_settings = optional(map(string))
+    })), {})
   })
 }
 
