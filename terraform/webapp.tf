@@ -35,12 +35,12 @@ resource "azurerm_linux_web_app" "this" {
   location            = data.azurerm_resource_group.this[var.app_service_plan.resource_groups_map_key].location
   service_plan_id     = data.azurerm_service_plan.this.id
   app_settings = merge(each.value.app_settings, {
-    psqladminuser     = "psqladmin"
-    psqladminpassword = "${random_password.rpassword.result}"
-    psqlhosturl       = azurerm_postgresql_flexible_server.this.fqdn
+    psqladminuser                  = "psqladmin"
+    psqladminpassword              = "${random_password.rpassword.result}"
+    psqlhosturl                    = azurerm_postgresql_flexible_server.this.fqdn
     SCM_DO_BUILD_DURING_DEPLOYMENT = true
   })
-  virtual_network_subnet_id = try(data.azurerm_subnet.this[each.value.virtual_network_subnet_key].id,null)
+  virtual_network_subnet_id = try(data.azurerm_subnet.this[each.value.virtual_network_subnet_key].id, null)
   site_config {
     application_stack {
       python_version = "3.11"

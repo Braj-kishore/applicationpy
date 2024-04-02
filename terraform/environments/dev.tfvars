@@ -8,8 +8,8 @@ app_service_plan = {
   name = "asp"
   webapps = {
     app = {
-      name = "Pyapp"
-      virtual_network_subnet_key= "appsubnet"
+      name                       = "Pyapp"
+      virtual_network_subnet_key = "appsubnet"
     }
   }
 }
