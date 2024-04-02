@@ -49,10 +49,11 @@ variable "app_service_plan" {
     name                    = string
     resource_groups_map_key = optional(string, "default")
     webapps = optional(map(object({
-      name         = string
-      kind         = optional(string, "webapp")
-      os_type      = optional(string, "Linux")
-      app_settings = optional(map(string))
+      name                       = string
+      kind                       = optional(string, "webapp")
+      os_type                    = optional(string, "Linux")
+      app_settings               = optional(map(string))
+      virtual_network_subnet_key = optional(string)
     })), {})
   })
 }
@@ -74,7 +75,7 @@ variable "postgresql_flexible_server" {
     storage_tier             = optional(string, "P30")
     storage_mb               = optional(number, 32768)
     sku_name                 = optional(string, "GP_Standard_D4s_v3")
-    zone                     = optional(number,2)
+    zone                     = optional(number, 2)
     databases = optional(list(object({
       name      = string
       charset   = optional(string, "utf8")
