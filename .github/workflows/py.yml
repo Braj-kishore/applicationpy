@@ -39,7 +39,7 @@ jobs:
     environment: ${{ matrix.environment }}
     defaults:
       run:
-        working-directory: src
+        working-directory: streamlitapp
     steps:
       - uses: actions/checkout@v4
 
