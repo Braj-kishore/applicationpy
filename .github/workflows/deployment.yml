@@ -146,7 +146,6 @@ jobs:
       id: validate
       run: |
         terraform validate -no-color
-        terraform state rm '${{ matrix.environment }}-app-terraform'
 
     - name: Terraform Plan
       id: plan

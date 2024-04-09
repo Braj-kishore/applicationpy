@@ -45,5 +45,5 @@ resource "azurerm_postgresql_flexible_server_database" "example" {
 resource "azurerm_key_vault_secret" "example" {
   name         = "one-arc-db-url"
   value        = "postgresql://psqladmin:${random_password.rpassword.result}@${azurerm_postgresql_flexible_server.this.fqdn}:5432/one_arc"
-  key_vault_id = module.avm-res-keyvault-vault.resource_keys.id
+  key_vault_id = module.avm-res-keyvault-vault.resource.id
 }

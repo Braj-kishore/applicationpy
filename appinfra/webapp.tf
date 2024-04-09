@@ -31,8 +31,8 @@
 resource "azurerm_linux_web_app" "this" {
   for_each            = var.app_service_plan.webapps
   name                = "${each.value.name}-${local.resource_name_suffix}"
-  resource_group_name = azurerm_resource_group.rg[var.app_service_plan.resource_groups_map_key].name.name
-  location            = azurerm_resource_group.rg[var.app_service_plan.resource_groups_map_key].name.location
+  resource_group_name = azurerm_resource_group.rg[var.app_service_plan.resource_groups_map_key].name
+  location            = azurerm_resource_group.rg[var.app_service_plan.resource_groups_map_key].location
   service_plan_id     = azurerm_service_plan.this.id
   app_settings = merge(each.value.app_settings, {
     SCM_DO_BUILD_DURING_DEPLOYMENT = true
