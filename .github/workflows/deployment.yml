@@ -32,7 +32,7 @@ jobs:
     - name: Render terraform docs and push changes back to PR
       uses: terraform-docs/gh-actions@v1.1.0
       with:
-        working-dir: terraform
+        working-dir: appinfra
         output-file: README.md
         output-method: inject
         git-push: "true"
@@ -91,7 +91,7 @@ jobs:
           name: "python-app-{{ matrix.environment }}"
           path: |
             streamlitapp/
-            !src/venv/
+            !streamlitapp/venv/
 
 
   Plan:
@@ -105,7 +105,7 @@ jobs:
     defaults:
       run:
         shell: bash
-        working-directory: terraform
+        working-directory: appinfra
     env:
       ARM_USE_OIDC: true
       ARM_CLIENT_ID: "${{ secrets.AZURE_CLIENT_ID }}"
@@ -144,7 +144,9 @@ jobs:
 
     - name: Terraform Validate
       id: validate
-      run: terraform validate -no-color
+      run: |
+        terraform validate -no-color
+        terraform state rm '${{ matrix.environment }}-app-terraform'
 
     - name: Terraform Plan
       id: plan
@@ -228,7 +230,7 @@ jobs:
     defaults:
       run:
         shell: bash
-        working-directory: terraform
+        working-directory: appinfra
     env:
       ARM_USE_OIDC: true
       ARM_CLIENT_ID: "${{ secrets.AZURE_CLIENT_ID }}"
