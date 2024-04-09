@@ -6,10 +6,7 @@ locals {
     Project     = var.project_name
   }
 
-  privatednszones = {
-    postgres = "privatelink.postgres.database.azure.com"
-    keyvault = "privatelink.vaultcore.azure.net"
-  }
+  privatednszones = {}
 
   web_app_logs = ["AppServiceConsoleLogs",
     "AppServiceAuditLogs",
